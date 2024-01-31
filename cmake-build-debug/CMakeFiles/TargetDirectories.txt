@@ -1,0 +1,3 @@
+C:/Users/annro/Desktop/doodle jump task/2022_win64/cmake-build-debug/CMakeFiles/doodleJump.dir
+C:/Users/annro/Desktop/doodle jump task/2022_win64/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/annro/Desktop/doodle jump task/2022_win64/cmake-build-debug/CMakeFiles/rebuild_cache.dir
