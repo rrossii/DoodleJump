@@ -18,6 +18,10 @@ add_executable(doodleJump
         src/Doodle.cpp
         src/Platform.cpp
         src/Platform.h
+        src/SpriteLocation.cpp
+        src/SpriteLocation.h
+        src/Collision.cpp
+        src/Collision.h
 )
 
 find_library(

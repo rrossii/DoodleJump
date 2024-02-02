@@ -1,28 +1,54 @@
 #include "Doodle.h"
 #include "Framework.h"
 
-Doodle::Doodle() :
-            velocityY(0.),
-            positionY(0.), positionX(0.),
-            isJumping(false),
-            doodleSprite(createSprite("C:\\Users\\annro\\Desktop\\doodle jump task\\2022_win64\\data\\blue-lik-left@2x.png")){}
+constexpr int GRAVITY = 1000;
+constexpr int GROUND_LEVEL = 0;
+double dy = 0;
 
-void Doodle::jump() {
-    isJumping = true;
-    double gravity = 10;
-    double ground = 0;
-    double deltaTime = getTickCount();
 
-    velocityY -= gravity * deltaTime;
-    positionY += velocityY * deltaTime;
+Doodle::Doodle(const std::filesystem::path &spriteLocation, double posX, double posY, double velocityY)
+        : Actor(spriteLocation, posX, posY), velocityY(velocityY) {}
 
-    if (positionY <= ground) {
-        positionY = ground;
-        velocityY = 0.;
-        isJumping = false;
+
+void Doodle::jump(double deltaTime, bool isLeftKeyPressed, bool isRightKeyPressed) {
+    dy += 0.1;
+    positionY += dy;
+
+    if (isLeftKeyPressed) {
+        positionX -= 1;
+    }
+    if (isRightKeyPressed) {
+        positionX += 1;
+    }
+
+    if (positionY <= GROUND_LEVEL) {
+        positionY = GROUND_LEVEL;
+    } else if (positionY >= 200) { // bottom of the screen, height
+        dy -= 8;
+    }
+
+    // replace 320 by width
+    if (positionX >= 320) {
+        positionX = 0;
+    } else if (positionX < 0) {
+        positionX = 320;
     }
 }
+//void Doodle::jump(double deltaTime) {
+//    isJumping = true;
+//
+//    velocityY -= GRAVITY * deltaTime;
+//    positionY += velocityY * deltaTime;
+//
+//    if (positionY <= GROUND_LEVEL) {
+//        positionY = GROUND_LEVEL;
+//        velocityY = 200;
+//        isJumping = false;
+//    } else if (positionY >= 100) { // bottom of the screen
+//        positionY = 100;
+//    }
+//}
 
-void Doodle::render() {
-    drawSprite(doodleSprite, positionY, positionX);
+void Doodle::update() {
+
 }

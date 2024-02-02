@@ -11,7 +11,6 @@
     #define FRAMEWORK_API 
 #endif
 
-
 // Bonus for any found bugs in the framework!
 
 class Sprite;
@@ -25,7 +24,7 @@ FRAMEWORK_API void destroySprite(Sprite* s);
 
 FRAMEWORK_API void drawTestBackground();
 
-FRAMEWORK_API void getScreenSize(int& w, int &h);
+FRAMEWORK_API void getScreenSize(int& w, int& h);
 
 // Get the number of milliseconds since library initialization.
 FRAMEWORK_API unsigned int getTickCount();

@@ -10,6 +10,8 @@ private:
     bool downKeyIsPressed = false;
     bool rightKeyIsPressed = false;
     bool leftKeyIsPressed = false;
+    GameScene startGame;
+    bool doodleFall = false;
 
 public:
 	virtual void PreInit(int& width, int& height, bool& fullscreen)
@@ -20,6 +22,7 @@ public:
 	}
 
 	virtual bool Init() {
+        startGame.init();
 
 		return true;
 	}
@@ -31,14 +34,19 @@ public:
 	virtual bool Tick() {
         drawTestBackground();
 
-        GameScene startGame;
-        startGame.init();
         if (upKeyIsPressed) {
-            startGame.update();
-            startGame.render();
+            doodleFall = true;
+        }
+        if (doodleFall) {
+            startGame.update(leftKeyIsPressed, rightKeyIsPressed);
+        }
+        startGame.render();
+
+        if (downKeyIsPressed) {
+            return true;
         }
 
-		return false;
+        return false;
 	}
 
 	virtual void onMouseMove(int x, int y, int xrelative, int yrelative) {

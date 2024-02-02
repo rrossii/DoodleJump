@@ -3,9 +3,10 @@
 
 #include "Actor.h"
 
+
 class Platform : public Actor {
-private:
-    int x, y;
+public:
+    Platform(double x, double y);
 };
 
 

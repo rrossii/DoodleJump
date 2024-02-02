@@ -6,14 +6,12 @@
 
 class Doodle : public Actor {
 public:
-    Doodle();
+    Doodle(const std::filesystem::path& spriteLocation, double posX, double posY, double velocityY);
 
-    void jump();
-    void render();
+    void jump(double deltaTime, bool isRightKeyPressed, bool isLeftKeyPressed);
+    void update();
 private:
-    Sprite* doodleSprite;
     double velocityY;
-    double positionY, positionX;
     bool isJumping;
 };
 
