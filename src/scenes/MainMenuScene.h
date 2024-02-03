@@ -2,7 +2,7 @@
 #define INC_2022_WIN64_MAINMENUSCENE_H
 
 #include "Scene.h"
-#include "UIElement.h"
+#include "src/ui/UIElement.h"
 
 class MainMenuScene : public Scene {
 public:

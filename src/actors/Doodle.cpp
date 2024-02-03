@@ -1,5 +1,5 @@
-#include "Doodle.h"
-#include "Framework.h"
+#include "src/actors/Doodle.h"
+#include "src/collisions/Collision.h"
 
 constexpr int GRAVITY = 1000;
 constexpr int GROUND_LEVEL = 0;
@@ -10,10 +10,16 @@ Doodle::Doodle(const std::filesystem::path &spriteLocation, double posX, double 
         : Actor(spriteLocation, posX, posY), velocityY(velocityY) {}
 
 
-void Doodle::jump(double deltaTime, bool isLeftKeyPressed, bool isRightKeyPressed) {
-    dy += 0.1;
-    positionY += dy;
+void Doodle::jump(int screenHeight, int screenWidth,
+                  double deltaTime, bool isLeftKeyPressed, bool isRightKeyPressed) {
 
+    displacementByX(screenWidth, isLeftKeyPressed, isRightKeyPressed);
+
+    dy -= 0.5;
+//    positionY -= dy;
+}
+
+void Doodle::displacementByX(int screenWidth, bool isLeftKeyPressed, bool isRightKeyPressed) {
     if (isLeftKeyPressed) {
         positionX -= 1;
     }
@@ -21,19 +27,23 @@ void Doodle::jump(double deltaTime, bool isLeftKeyPressed, bool isRightKeyPresse
         positionX += 1;
     }
 
-    if (positionY <= GROUND_LEVEL) {
-        positionY = GROUND_LEVEL;
-    } else if (positionY >= 200) { // bottom of the screen, height
-        dy -= 8;
-    }
-
-    // replace 320 by width
-    if (positionX >= 320) {
+    if (positionX >= screenWidth) {
         positionX = 0;
     } else if (positionX < 0) {
-        positionX = 320;
+        positionX = screenWidth;
     }
 }
+
+void Doodle::fall(int screenWidth, bool isLeftKeyPressed, bool isRightKeyPressed) {
+    dy += 0.08;
+    positionY += dy;
+    displacementByX(screenWidth, isLeftKeyPressed, isRightKeyPressed);
+}
+
+void Doodle::shoot(Projectile *projectile) {
+
+}
+
 //void Doodle::jump(double deltaTime) {
 //    isJumping = true;
 //
@@ -48,7 +58,3 @@ void Doodle::jump(double deltaTime, bool isLeftKeyPressed, bool isRightKeyPresse
 //        positionY = 100;
 //    }
 //}
-
-void Doodle::update() {
-
-}

@@ -57,53 +57,85 @@ build CMakeFiles/doodleJump.dir/src/game.cpp.obj: CXX_COMPILER__doodleJump_unsca
   OBJECT_DIR = CMakeFiles\doodleJump.dir
   OBJECT_FILE_DIR = CMakeFiles\doodleJump.dir\src
 
-build CMakeFiles/doodleJump.dir/src/Actor.cpp.obj: CXX_COMPILER__doodleJump_unscanned_Debug C$:/Users/annro/Desktop/doodle$ jump$ task/2022_win64/src/Actor.cpp || cmake_object_order_depends_target_doodleJump
+build CMakeFiles/doodleJump.dir/src/actors/Actor.cpp.obj: CXX_COMPILER__doodleJump_unscanned_Debug C$:/Users/annro/Desktop/doodle$ jump$ task/2022_win64/src/actors/Actor.cpp || cmake_object_order_depends_target_doodleJump
   DEFINES = -D_WINDOWS
-  DEP_FILE = CMakeFiles\doodleJump.dir\src\Actor.cpp.obj.d
+  DEP_FILE = CMakeFiles\doodleJump.dir\src\actors\Actor.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   INCLUDES = -I"C:/Users/annro/Desktop/doodle jump task/2022_win64"
   OBJECT_DIR = CMakeFiles\doodleJump.dir
-  OBJECT_FILE_DIR = CMakeFiles\doodleJump.dir\src
+  OBJECT_FILE_DIR = CMakeFiles\doodleJump.dir\src\actors
 
-build CMakeFiles/doodleJump.dir/src/MainMenuScene.cpp.obj: CXX_COMPILER__doodleJump_unscanned_Debug C$:/Users/annro/Desktop/doodle$ jump$ task/2022_win64/src/MainMenuScene.cpp || cmake_object_order_depends_target_doodleJump
+build CMakeFiles/doodleJump.dir/src/scenes/MainMenuScene.cpp.obj: CXX_COMPILER__doodleJump_unscanned_Debug C$:/Users/annro/Desktop/doodle$ jump$ task/2022_win64/src/scenes/MainMenuScene.cpp || cmake_object_order_depends_target_doodleJump
   DEFINES = -D_WINDOWS
-  DEP_FILE = CMakeFiles\doodleJump.dir\src\MainMenuScene.cpp.obj.d
+  DEP_FILE = CMakeFiles\doodleJump.dir\src\scenes\MainMenuScene.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   INCLUDES = -I"C:/Users/annro/Desktop/doodle jump task/2022_win64"
   OBJECT_DIR = CMakeFiles\doodleJump.dir
-  OBJECT_FILE_DIR = CMakeFiles\doodleJump.dir\src
+  OBJECT_FILE_DIR = CMakeFiles\doodleJump.dir\src\scenes
 
-build CMakeFiles/doodleJump.dir/src/UIElement.cpp.obj: CXX_COMPILER__doodleJump_unscanned_Debug C$:/Users/annro/Desktop/doodle$ jump$ task/2022_win64/src/UIElement.cpp || cmake_object_order_depends_target_doodleJump
+build CMakeFiles/doodleJump.dir/src/ui/UIElement.cpp.obj: CXX_COMPILER__doodleJump_unscanned_Debug C$:/Users/annro/Desktop/doodle$ jump$ task/2022_win64/src/ui/UIElement.cpp || cmake_object_order_depends_target_doodleJump
   DEFINES = -D_WINDOWS
-  DEP_FILE = CMakeFiles\doodleJump.dir\src\UIElement.cpp.obj.d
+  DEP_FILE = CMakeFiles\doodleJump.dir\src\ui\UIElement.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   INCLUDES = -I"C:/Users/annro/Desktop/doodle jump task/2022_win64"
   OBJECT_DIR = CMakeFiles\doodleJump.dir
-  OBJECT_FILE_DIR = CMakeFiles\doodleJump.dir\src
+  OBJECT_FILE_DIR = CMakeFiles\doodleJump.dir\src\ui
 
-build CMakeFiles/doodleJump.dir/src/GameScene.cpp.obj: CXX_COMPILER__doodleJump_unscanned_Debug C$:/Users/annro/Desktop/doodle$ jump$ task/2022_win64/src/GameScene.cpp || cmake_object_order_depends_target_doodleJump
+build CMakeFiles/doodleJump.dir/src/scenes/GameScene.cpp.obj: CXX_COMPILER__doodleJump_unscanned_Debug C$:/Users/annro/Desktop/doodle$ jump$ task/2022_win64/src/scenes/GameScene.cpp || cmake_object_order_depends_target_doodleJump
   DEFINES = -D_WINDOWS
-  DEP_FILE = CMakeFiles\doodleJump.dir\src\GameScene.cpp.obj.d
+  DEP_FILE = CMakeFiles\doodleJump.dir\src\scenes\GameScene.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   INCLUDES = -I"C:/Users/annro/Desktop/doodle jump task/2022_win64"
   OBJECT_DIR = CMakeFiles\doodleJump.dir
-  OBJECT_FILE_DIR = CMakeFiles\doodleJump.dir\src
+  OBJECT_FILE_DIR = CMakeFiles\doodleJump.dir\src\scenes
 
-build CMakeFiles/doodleJump.dir/src/Doodle.cpp.obj: CXX_COMPILER__doodleJump_unscanned_Debug C$:/Users/annro/Desktop/doodle$ jump$ task/2022_win64/src/Doodle.cpp || cmake_object_order_depends_target_doodleJump
+build CMakeFiles/doodleJump.dir/src/actors/Doodle.cpp.obj: CXX_COMPILER__doodleJump_unscanned_Debug C$:/Users/annro/Desktop/doodle$ jump$ task/2022_win64/src/actors/Doodle.cpp || cmake_object_order_depends_target_doodleJump
   DEFINES = -D_WINDOWS
-  DEP_FILE = CMakeFiles\doodleJump.dir\src\Doodle.cpp.obj.d
+  DEP_FILE = CMakeFiles\doodleJump.dir\src\actors\Doodle.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   INCLUDES = -I"C:/Users/annro/Desktop/doodle jump task/2022_win64"
   OBJECT_DIR = CMakeFiles\doodleJump.dir
-  OBJECT_FILE_DIR = CMakeFiles\doodleJump.dir\src
+  OBJECT_FILE_DIR = CMakeFiles\doodleJump.dir\src\actors
 
-build CMakeFiles/doodleJump.dir/src/Platform.cpp.obj: CXX_COMPILER__doodleJump_unscanned_Debug C$:/Users/annro/Desktop/doodle$ jump$ task/2022_win64/src/Platform.cpp || cmake_object_order_depends_target_doodleJump
+build CMakeFiles/doodleJump.dir/src/actors/Platform.cpp.obj: CXX_COMPILER__doodleJump_unscanned_Debug C$:/Users/annro/Desktop/doodle$ jump$ task/2022_win64/src/actors/Platform.cpp || cmake_object_order_depends_target_doodleJump
   DEFINES = -D_WINDOWS
-  DEP_FILE = CMakeFiles\doodleJump.dir\src\Platform.cpp.obj.d
+  DEP_FILE = CMakeFiles\doodleJump.dir\src\actors\Platform.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   INCLUDES = -I"C:/Users/annro/Desktop/doodle jump task/2022_win64"
   OBJECT_DIR = CMakeFiles\doodleJump.dir
-  OBJECT_FILE_DIR = CMakeFiles\doodleJump.dir\src
+  OBJECT_FILE_DIR = CMakeFiles\doodleJump.dir\src\actors
+
+build CMakeFiles/doodleJump.dir/src/utils/SpriteLocation.cpp.obj: CXX_COMPILER__doodleJump_unscanned_Debug C$:/Users/annro/Desktop/doodle$ jump$ task/2022_win64/src/utils/SpriteLocation.cpp || cmake_object_order_depends_target_doodleJump
+  DEFINES = -D_WINDOWS
+  DEP_FILE = CMakeFiles\doodleJump.dir\src\utils\SpriteLocation.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -I"C:/Users/annro/Desktop/doodle jump task/2022_win64"
+  OBJECT_DIR = CMakeFiles\doodleJump.dir
+  OBJECT_FILE_DIR = CMakeFiles\doodleJump.dir\src\utils
+
+build CMakeFiles/doodleJump.dir/src/collisions/Collision.cpp.obj: CXX_COMPILER__doodleJump_unscanned_Debug C$:/Users/annro/Desktop/doodle$ jump$ task/2022_win64/src/collisions/Collision.cpp || cmake_object_order_depends_target_doodleJump
+  DEFINES = -D_WINDOWS
+  DEP_FILE = CMakeFiles\doodleJump.dir\src\collisions\Collision.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -I"C:/Users/annro/Desktop/doodle jump task/2022_win64"
+  OBJECT_DIR = CMakeFiles\doodleJump.dir
+  OBJECT_FILE_DIR = CMakeFiles\doodleJump.dir\src\collisions
+
+build CMakeFiles/doodleJump.dir/src/actors/Enemy.cpp.obj: CXX_COMPILER__doodleJump_unscanned_Debug C$:/Users/annro/Desktop/doodle$ jump$ task/2022_win64/src/actors/Enemy.cpp || cmake_object_order_depends_target_doodleJump
+  DEFINES = -D_WINDOWS
+  DEP_FILE = CMakeFiles\doodleJump.dir\src\actors\Enemy.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -I"C:/Users/annro/Desktop/doodle jump task/2022_win64"
+  OBJECT_DIR = CMakeFiles\doodleJump.dir
+  OBJECT_FILE_DIR = CMakeFiles\doodleJump.dir\src\actors
+
+build CMakeFiles/doodleJump.dir/src/actors/Projectile.cpp.obj: CXX_COMPILER__doodleJump_unscanned_Debug C$:/Users/annro/Desktop/doodle$ jump$ task/2022_win64/src/actors/Projectile.cpp || cmake_object_order_depends_target_doodleJump
+  DEFINES = -D_WINDOWS
+  DEP_FILE = CMakeFiles\doodleJump.dir\src\actors\Projectile.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -I"C:/Users/annro/Desktop/doodle jump task/2022_win64"
+  OBJECT_DIR = CMakeFiles\doodleJump.dir
+  OBJECT_FILE_DIR = CMakeFiles\doodleJump.dir\src\actors
 
 
 # =============================================================================
@@ -113,7 +145,7 @@ build CMakeFiles/doodleJump.dir/src/Platform.cpp.obj: CXX_COMPILER__doodleJump_u
 #############################################
 # Link the executable doodleJump.exe
 
-build doodleJump.exe: CXX_EXECUTABLE_LINKER__doodleJump_Debug CMakeFiles/doodleJump.dir/src/game.cpp.obj CMakeFiles/doodleJump.dir/src/Actor.cpp.obj CMakeFiles/doodleJump.dir/src/MainMenuScene.cpp.obj CMakeFiles/doodleJump.dir/src/UIElement.cpp.obj CMakeFiles/doodleJump.dir/src/GameScene.cpp.obj CMakeFiles/doodleJump.dir/src/Doodle.cpp.obj CMakeFiles/doodleJump.dir/src/Platform.cpp.obj
+build doodleJump.exe: CXX_EXECUTABLE_LINKER__doodleJump_Debug CMakeFiles/doodleJump.dir/src/game.cpp.obj CMakeFiles/doodleJump.dir/src/actors/Actor.cpp.obj CMakeFiles/doodleJump.dir/src/scenes/MainMenuScene.cpp.obj CMakeFiles/doodleJump.dir/src/ui/UIElement.cpp.obj CMakeFiles/doodleJump.dir/src/scenes/GameScene.cpp.obj CMakeFiles/doodleJump.dir/src/actors/Doodle.cpp.obj CMakeFiles/doodleJump.dir/src/actors/Platform.cpp.obj CMakeFiles/doodleJump.dir/src/utils/SpriteLocation.cpp.obj CMakeFiles/doodleJump.dir/src/collisions/Collision.cpp.obj CMakeFiles/doodleJump.dir/src/actors/Enemy.cpp.obj CMakeFiles/doodleJump.dir/src/actors/Projectile.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lFrameworkRelease_x64  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   LINK_PATH = -LC:/Users/annro/Desktop/DOODLE~1/2022_W~1

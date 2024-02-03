@@ -1,28 +1,60 @@
 #include "Framework.h"
-#include "MainMenuScene.h"
-#include "GameScene.h"
+#include "src/scenes/GameScene.h"
 #include <iostream>
+#include <sstream>
 
 
 class MyFramework : public Framework {
 private:
+    int screenWidth = 320, screenHeight = 200;
+
     bool upKeyIsPressed = false;
     bool downKeyIsPressed = false;
     bool rightKeyIsPressed = false;
     bool leftKeyIsPressed = false;
+
+    bool isLeftMouseButtonPressed = false;
+    bool isRightMouseButtonPressed = false;
+    bool isMiddleMouseButtonPressed = false;
+
     GameScene startGame;
     bool doodleFall = false;
 
+    int argc;
+    char** argv;
+
 public:
-	virtual void PreInit(int& width, int& height, bool& fullscreen)
-	{
-		width = 320;
-		height = 200;
-		fullscreen = false;
-	}
+    MyFramework(int argc, char** argv) : argc(argc), argv(argv) {
+
+    };
+    
+	virtual void PreInit(int& width, int& height, bool& fullscreen) {
+        if (argc > 1) {
+            if (argv[1] == "-window") {
+                std::string sizeArg = argv[2];
+                std::stringstream ss(sizeArg);
+                char x;
+                ss >> width >> x >> height;
+                fullscreen = false;
+
+                if (ss.fail() || x != 'x') {
+                    std::cerr << "Invalid window size format, should be like this: WidthxHeight\n";
+                }
+            }
+        } else {
+            width = 320;
+            height = 200;
+            fullscreen = false;
+        }
+        screenWidth = width;
+        screenHeight = height;
+    }
 
 	virtual bool Init() {
         startGame.init();
+        int w, h;
+        getScreenSize(w, h);
+        std::cout << w << " " << h;
 
 		return true;
 	}
@@ -43,6 +75,7 @@ public:
         startGame.render();
 
         if (downKeyIsPressed) {
+            startGame.cleanup();
             return true;
         }
 
@@ -97,7 +130,13 @@ public:
 	}
 };
 
-int main(int argc, char *argv[])
+int main()
 {
-	return run(new MyFramework);
+    char* argv[] = {"game", "-window", "600x600", nullptr};
+	return run(new MyFramework(4, argv));
 }
+
+//int main(int argc, char* argv[])
+//{
+//    return run(new MyFramework(argc, argv));
+//}

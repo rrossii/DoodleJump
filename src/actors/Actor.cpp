@@ -1,4 +1,4 @@
-#include "Actor.h"
+#include "src/actors/Actor.h"
 
 
 Actor::Actor(const std::filesystem::path& spriteLocation, double posX, double posY)
@@ -19,4 +19,16 @@ double Actor::getY() {
 
 void Actor::render() {
     drawSprite(sprite, positionX, positionY);
+}
+
+int Actor::getHeight() {
+    getSpriteSize(sprite, height, width);
+
+    return height;
+}
+
+int Actor::getWidth() {
+    getSpriteSize(sprite, height, width);
+
+    return width;
 }

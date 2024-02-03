@@ -11,17 +11,21 @@ add_definitions(-D_WINDOWS)
 
 add_executable(doodleJump
         src/game.cpp
-        src/Actor.cpp
-        src/MainMenuScene.cpp
-        src/UIElement.cpp
-        src/GameScene.cpp
-        src/Doodle.cpp
-        src/Platform.cpp
-        src/Platform.h
-        src/SpriteLocation.cpp
-        src/SpriteLocation.h
-        src/Collision.cpp
-        src/Collision.h
+        src/actors/Actor.cpp
+        src/scenes/MainMenuScene.cpp
+        src/ui/UIElement.cpp
+        src/scenes/GameScene.cpp
+        src/actors/Doodle.cpp
+        src/actors/Platform.cpp
+        src/actors/Platform.h
+        src/utils/SpriteLocation.cpp
+        src/utils/SpriteLocation.h
+        src/collisions/Collision.h
+        src/collisions/Collision.cpp
+        src/actors/Enemy.cpp
+        src/actors/Enemy.h
+        src/actors/Projectile.cpp
+        src/actors/Projectile.h
 )
 
 find_library(

@@ -1,6 +1,7 @@
-
 #ifndef INC_2022_WIN64_SCENE_H
 #define INC_2022_WIN64_SCENE_H
+
+#include "Framework.h"
 
 class Scene {
 public:
@@ -9,6 +10,9 @@ public:
     virtual void render() = 0;
     virtual void handleInput() = 0;
     virtual void cleanup() = 0;
+
+private:
+    int screenWidth, screenHeight;
 };
 
 
