@@ -5,8 +5,10 @@ constexpr int GRAVITY = 1000;
 constexpr int GROUND_LEVEL = 0;
 double dy = 0;
 
+int sceneWidth, sceneHeight;
 
-Doodle::Doodle(const std::filesystem::path &spriteLocation, double posX, double posY, double velocityY)
+
+Doodle::Doodle(const std::filesystem::path &spriteLocation, int posX, int posY, double velocityY)
         : Actor(spriteLocation, posX, posY), velocityY(velocityY) {}
 
 
@@ -15,28 +17,28 @@ void Doodle::jump(int screenHeight, int screenWidth,
 
     displacementByX(screenWidth, isLeftKeyPressed, isRightKeyPressed);
 
-    dy -= 0.5;
-//    positionY -= dy;
+    dy -= 0.06;
+//    position.y -= dy;
 }
 
 void Doodle::displacementByX(int screenWidth, bool isLeftKeyPressed, bool isRightKeyPressed) {
     if (isLeftKeyPressed) {
-        positionX -= 1;
+        position.x -= 1;
     }
     if (isRightKeyPressed) {
-        positionX += 1;
+        position.x += 1;
     }
 
-    if (positionX >= screenWidth) {
-        positionX = 0;
-    } else if (positionX < 0) {
-        positionX = screenWidth;
+    if (position.x >= screenWidth) {
+        position.x = 0;
+    } else if (position.x < 0) {
+        position.x = screenWidth;
     }
 }
 
 void Doodle::fall(int screenWidth, bool isLeftKeyPressed, bool isRightKeyPressed) {
-    dy += 0.08;
-    positionY += dy;
+    dy += 0.06;
+    position.y += dy;
     displacementByX(screenWidth, isLeftKeyPressed, isRightKeyPressed);
 }
 

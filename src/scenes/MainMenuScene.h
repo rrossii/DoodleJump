@@ -13,6 +13,7 @@ public:
     void render() override;
     void handleInput() override;
     void cleanup() override;
+    void destroySprites() override;
 
 private:
     UIElement* startGameButton;

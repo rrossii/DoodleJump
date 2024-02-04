@@ -5,7 +5,7 @@
 
 class Enemy : public Actor {
 public:
-    Enemy(const std::filesystem::path& spriteLocation, double posX, double posY, bool isDead);
+    Enemy(const std::filesystem::path& spriteLocation, int posX, int posY, bool isDead);
 private:
     bool dead = false;
 };

@@ -7,13 +7,14 @@
 
 class Doodle : public Actor {
 public:
-    Doodle(const std::filesystem::path& spriteLocation, double posX, double posY, double velocityY);
+    Doodle(const std::filesystem::path& spriteLocation, int posX, int posY, double velocityY);
 
     void jump(int screenHeight, int screenWidth, double deltaTime, bool isRightKeyPressed, bool isLeftKeyPressed);
     void fall(int screenWidth, bool isLeftKeyPressed, bool isRightKeyPressed);
     void displacementByX(int screenWidth, bool isLeftKeyPressed, bool isRightKeyPressed);
 
     void shoot(Projectile* projectile);
+
 private:
     double velocityY;
     bool isJumping;

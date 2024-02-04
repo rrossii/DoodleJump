@@ -1,7 +1,9 @@
-#include "Framework.h"
-#include "src/scenes/GameScene.h"
 #include <iostream>
 #include <sstream>
+
+#include "Framework.h"
+#include "src/scenes/GameScene.h"
+#include "src/scenes/GameOverScene.h"
 
 class MyFramework : public Framework {
 private:
@@ -17,8 +19,11 @@ private:
     bool isLeftMouseButtonPressed = false;
     bool isRightMouseButtonPressed = false;
     bool isMiddleMouseButtonPressed = false;
+
+    bool gameOverSceneRendered = false;
     
     std::unique_ptr<GameScene> startGame;
+    std::unique_ptr<GameOverScene> gameOver;
     bool doodleFall = false;
 
 public:
@@ -42,6 +47,7 @@ public:
             }
         }
         startGame = std::make_unique<GameScene>(screenWidth, screenHeight);
+        gameOver = std::make_unique<GameOverScene>(screenWidth, screenHeight);
     };
     
 	virtual void PreInit(int& width, int& height, bool& fullscreen) {
@@ -56,9 +62,12 @@ public:
 		return true;
 	}
 
-	virtual void Close() {
-
-	}
+    virtual void Close() {
+        startGame->destroySprites();
+        startGame->cleanup();
+        gameOver->destroySprites();
+        gameOver->cleanup();
+    }
 
 	virtual bool Tick() {
         drawTestBackground();
@@ -68,11 +77,19 @@ public:
         }
         if (doodleFall) {
             startGame->update(leftKeyIsPressed, rightKeyIsPressed);
+            if (startGame->isDoodleDead()) {
+                gameOver->init();
+                gameOver->render();
+
+                gameOverSceneRendered = true;
+            }
         }
-        startGame->render();
+
+        if (!gameOverSceneRendered) {
+            startGame->render();
+        }
 
         if (downKeyIsPressed) {
-            startGame->cleanup();
             return true;
         }
 

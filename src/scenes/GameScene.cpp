@@ -1,7 +1,4 @@
 #include "src/scenes/GameScene.h"
-#include "src/utils/SpriteLocation.h"
-#include "src/utils/Randomizer.h"
-#include "src/collisions/Collision.h"
 
 GameScene::GameScene(int width, int height) : Scene(width, height) {}
 
@@ -57,6 +54,10 @@ void GameScene::cameraOffset() {
     }
 }
 
+bool GameScene::isDoodleDead() {
+    return doodlePlayer->getY() > getHeight();
+}
+
 void GameScene::handleInput() {
 
 }
@@ -98,5 +99,13 @@ void GameScene::cleanup() {
 
     for (auto platform : platforms) {
         delete platform;
+    }
+}
+
+void GameScene::destroySprites() {
+    destroySprite(doodlePlayer->getSprite());
+
+    for (auto platform : platforms) {
+        destroySprite(platform->getSprite());
     }
 }

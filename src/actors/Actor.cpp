@@ -1,24 +1,24 @@
 #include "src/actors/Actor.h"
 
 
-Actor::Actor(const std::filesystem::path& spriteLocation, double posX, double posY)
-    : sprite(createSprite(spriteLocation.string().c_str())), positionX(posX), positionY(posY) {}
+Actor::Actor(const std::filesystem::path& spriteLocation, int posX, int posY)
+    : sprite(createSprite(spriteLocation.string().c_str())), position({posX, posY}) {}
 
-void Actor::setPosition(double x, double y) {
-    positionX = x;
-    positionY = y;
+void Actor::setPosition(int x, int y) {
+    position.x = x;
+    position.y = y;
 }
 
-double Actor::getX() {
-    return positionX;
+int Actor::getX() {
+    return position.x;
 }
 
-double Actor::getY() {
-    return positionY;
+int Actor::getY() {
+    return position.y;
 }
 
 void Actor::render() {
-    drawSprite(sprite, positionX, positionY);
+    drawSprite(sprite, position.x, position.y);
 }
 
 int Actor::getHeight() {
@@ -31,4 +31,8 @@ int Actor::getWidth() {
     getSpriteSize(sprite, width, height);
 
     return width;
+}
+
+Sprite *Actor::getSprite() {
+    return sprite;
 }

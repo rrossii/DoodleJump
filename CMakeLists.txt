@@ -27,8 +27,8 @@ add_executable(doodleJump
         src/utils/Position.h
         src/ui/UIManager.cpp
         src/ui/UIManager.h
-        src/scenes/GameOver.cpp
-        src/scenes/GameOver.h
+        src/scenes/GameOverScene.cpp
+        src/scenes/GameOverScene.h
 )
 
 find_library(

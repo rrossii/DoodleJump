@@ -2,10 +2,19 @@
 #include "Framework.h"
 
 
-UIElement::UIElement(const std::filesystem::path spriteLocation) : spriteLocation(spriteLocation) {
+UIElement::UIElement(const std::filesystem::path& spriteLocation, Position position)
+         : uiSpriteLocation(spriteLocation), position(position) {
 }
 
-void UIElement::render() {
-    auto sprite = createSprite(spriteLocation.string().c_str());
-    drawSprite(sprite, 100, 100);
+std::filesystem::path UIElement::getSpriteLocation() {
+    return uiSpriteLocation;
 }
+
+int UIElement::getX() {
+    return position.x;
+}
+
+int UIElement::getY() {
+    return position.y;
+}
+

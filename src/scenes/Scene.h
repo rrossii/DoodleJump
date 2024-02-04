@@ -10,6 +10,7 @@ public:
     virtual void render() = 0;
     virtual void handleInput() = 0;
     virtual void cleanup() = 0;
+    virtual void destroySprites() = 0;
 
 protected:
     int getWidth();

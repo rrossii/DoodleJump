@@ -3,22 +3,25 @@
 
 #include "Framework.h"
 #include "src/utils/SpriteLocation.h"
+#include "src/utils/Position.h"
 #include <filesystem>
 
 class Actor {
 public:
-    Actor(const std::filesystem::path& spriteLocation, double posX, double posY);
+    Actor(const std::filesystem::path& spriteLocation, int posX, int posY);
 
-    void setPosition(double x, double y);
-    double getX();
-    double getY();
+    void setPosition(int x, int y);
+
+    int getX();
+    int getY();
     int getHeight();
     int getWidth();
+    Sprite* getSprite();
 
     void render();
 protected:
     Sprite* sprite;
-    double positionX, positionY;
+    Position position;
     int width, height;
 };
 

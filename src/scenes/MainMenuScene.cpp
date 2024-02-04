@@ -27,3 +27,7 @@ void MainMenuScene::cleanup() {
     delete exitGameButton;
 }
 
+void MainMenuScene::destroySprites() {
+
+}
+
