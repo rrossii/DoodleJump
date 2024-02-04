@@ -2,6 +2,7 @@
 #include "src/utils/SpriteLocation.h"
 #include "src/collisions/Collision.h"
 #include <iostream>
+#include <random>
 
 GameScene::GameScene(int width, int height) : Scene(width, height) {}
 
@@ -51,13 +52,33 @@ void GameScene::update() {
 }
 
 void GameScene::spawnPlatforms() {
-    for (int i = 0; i < 15; i++) {
-        double randX = rand() % getWidth() - 20;
-        double randY = rand() % getHeight() - 20;
+    auto* basicPlatform = new Platform(0, 0);
+    int platformHeight = basicPlatform->getHeight();
+    int platformWidth = basicPlatform->getWidth();
+    int spacingVertical = platformHeight + 30;
+    int spacingHorizontal = platformWidth * 2;
+    int numOfHorizontalLines = getHeight() / spacingVertical;
+    int maxNumberOfPlatformsInOneLine = getWidth() / spacingHorizontal;
+    int currentY = 0;
 
-        Platform* platform = new Platform(randX, randY);
+    for (int i = 0; i < numOfHorizontalLines; i++) {
+        int numberOfPlatformsInOneLine = rand() % maxNumberOfPlatformsInOneLine;
 
-        platforms.emplace_back(platform);
+        for (int j = 0; j < numberOfPlatformsInOneLine; j++) {
+            std::random_device random_device;
+            std::mt19937 generator(random_device());
+
+            std::uniform_int_distribution<> distributionX(0, getWidth() - platformWidth);
+            std::uniform_int_distribution<> distributionY(currentY, currentY + spacingVertical);
+
+            double randX = distributionX(generator);
+            double randY = distributionY(generator);
+
+            Platform* platform = new Platform(randX, randY);
+
+            platforms.emplace_back(platform);
+        }
+        currentY += spacingVertical;
     }
 }
 
