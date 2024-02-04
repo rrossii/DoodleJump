@@ -1,15 +1,14 @@
 #include "src/scenes/GameScene.h"
 #include "src/utils/SpriteLocation.h"
+#include "src/utils/Randomizer.h"
 #include "src/collisions/Collision.h"
-#include <iostream>
-#include <random>
 
 GameScene::GameScene(int width, int height) : Scene(width, height) {}
 
 void GameScene::init() {
     doodlePlayer = new Doodle(
             SpriteLocation::doodleSpriteLocation,
-            50, 0, 200);
+            getWidth() / 2, getHeight() - 200, 200);
 
     spawnPlatforms();
 
@@ -33,6 +32,7 @@ void GameScene::update(bool leftKeyIsPressed, bool rightKeyIsPressed) {
                                leftKeyIsPressed, rightKeyIsPressed);
         }
     }
+    cameraOffset();
 }
 
 void GameScene::render() {
@@ -40,6 +40,20 @@ void GameScene::render() {
 
     for (auto p : platforms) {
         p->render();
+    }
+}
+
+void GameScene::cameraOffset() {
+    int offset = getHeight() / 2;
+    if (doodlePlayer->getY() < offset) {
+        for (Platform* platform : platforms) {
+            platform->setPosition(platform->getX(), platform->getY() + 3); // TODO: think about this parameter
+
+            if (platform->getY() > getHeight()) {
+                int randX = Randomizer::getRandomNumber(0, getWidth() - platform->getWidth());
+                platform->setPosition(randX, 0);
+            }
+        }
     }
 }
 
@@ -56,26 +70,19 @@ void GameScene::spawnPlatforms() {
     int platformHeight = basicPlatform->getHeight();
     int platformWidth = basicPlatform->getWidth();
     int spacingVertical = platformHeight + 30;
-    int spacingHorizontal = platformWidth * 2;
+    int spacingHorizontal = (platformWidth * 2) + 30;
     int numOfHorizontalLines = getHeight() / spacingVertical;
     int maxNumberOfPlatformsInOneLine = getWidth() / spacingHorizontal;
     int currentY = 0;
 
     for (int i = 0; i < numOfHorizontalLines; i++) {
-        int numberOfPlatformsInOneLine = rand() % maxNumberOfPlatformsInOneLine;
+        int numberOfPlatformsInOneLine = Randomizer::getRandomNumber(1, maxNumberOfPlatformsInOneLine);
 
         for (int j = 0; j < numberOfPlatformsInOneLine; j++) {
-            std::random_device random_device;
-            std::mt19937 generator(random_device());
+            int randX = Randomizer::getRandomNumber(0, getWidth() - platformWidth);
+            int randY = Randomizer::getRandomNumber(currentY, currentY + spacingVertical);
 
-            std::uniform_int_distribution<> distributionX(0, getWidth() - platformWidth);
-            std::uniform_int_distribution<> distributionY(currentY, currentY + spacingVertical);
-
-            double randX = distributionX(generator);
-            double randY = distributionY(generator);
-
-            Platform* platform = new Platform(randX, randY);
-
+            auto* platform = new Platform(randX, randY);
             platforms.emplace_back(platform);
         }
         currentY += spacingVertical;

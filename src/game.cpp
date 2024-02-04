@@ -70,6 +70,8 @@ public:
         if (doodleFall) {
             startGame->update(leftKeyIsPressed, rightKeyIsPressed);
         }
+//        startGame->render();
+//        startGame->update(leftKeyIsPressed, rightKeyIsPressed);
         startGame->render();
 
         if (downKeyIsPressed) {

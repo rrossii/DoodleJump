@@ -22,6 +22,8 @@ add_executable(doodleJump
         src/actors/Enemy.cpp
         src/actors/Projectile.cpp
         src/scenes/Scene.cpp
+        src/utils/Randomizer.cpp
+        src/utils/Randomizer.h
 )
 
 find_library(

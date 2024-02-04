@@ -6,7 +6,7 @@
 
 class Platform : public Actor {
 public:
-    Platform(double x, double y);
+    Platform(int x, int y);
 };
 
 

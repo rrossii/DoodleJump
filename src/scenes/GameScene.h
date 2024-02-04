@@ -21,6 +21,8 @@ public:
 
     void spawnPlatforms();
     void spawnEnemies();
+
+    void cameraOffset();
 private:
     Doodle* doodlePlayer{};
     std::vector<Platform*> platforms;

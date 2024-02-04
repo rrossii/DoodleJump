@@ -5,7 +5,7 @@
 
 class Projectile : public Actor {
 public:
-    Projectile(const std::filesystem::path& spriteLocation, double posX, double posY);
+    Projectile(const std::filesystem::path& spriteLocation, int posX, int posY);
 private:
     const int SPEED = 10; //TODO: maybe redo this variable later
 };

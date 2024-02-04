@@ -1,5 +1,5 @@
 #include "src/actors/Platform.h"
 
-Platform::Platform(double x, double y) : Actor(SpriteLocation::platformSpriteLocation, x, y) {
+Platform::Platform(int x, int y) : Actor(SpriteLocation::platformSpriteLocation, x, y) {
 
 }
