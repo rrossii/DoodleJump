@@ -24,6 +24,11 @@ add_executable(doodleJump
         src/scenes/Scene.cpp
         src/utils/Randomizer.cpp
         src/utils/Randomizer.h
+        src/utils/Position.h
+        src/ui/UIManager.cpp
+        src/ui/UIManager.h
+        src/scenes/GameOver.cpp
+        src/scenes/GameOver.h
 )
 
 find_library(
