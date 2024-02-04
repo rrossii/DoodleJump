@@ -2,10 +2,7 @@
 #include <iostream>
 
 
-MainMenuScene::MainMenuScene() {
-    startGameButton = nullptr;
-    exitGameButton = nullptr;
-}
+MainMenuScene::MainMenuScene(int width, int height) : Scene(width, height) {}
 
 void MainMenuScene::init() {
 //    startGameButton = new UIElement();

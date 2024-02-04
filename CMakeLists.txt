@@ -17,15 +17,11 @@ add_executable(doodleJump
         src/scenes/GameScene.cpp
         src/actors/Doodle.cpp
         src/actors/Platform.cpp
-        src/actors/Platform.h
         src/utils/SpriteLocation.cpp
-        src/utils/SpriteLocation.h
-        src/collisions/Collision.h
         src/collisions/Collision.cpp
         src/actors/Enemy.cpp
-        src/actors/Enemy.h
         src/actors/Projectile.cpp
-        src/actors/Projectile.h
+        src/scenes/Scene.cpp
 )
 
 find_library(

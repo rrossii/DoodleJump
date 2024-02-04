@@ -6,7 +6,9 @@
 
 class MyFramework : public Framework {
 private:
-    int screenWidth = 320, screenHeight = 200;
+    int screenWidth;
+    int screenHeight;
+    bool isFullscreen;
 
     bool upKeyIsPressed = false;
     bool downKeyIsPressed = false;
@@ -16,45 +18,40 @@ private:
     bool isLeftMouseButtonPressed = false;
     bool isRightMouseButtonPressed = false;
     bool isMiddleMouseButtonPressed = false;
-
-    GameScene startGame;
+    
+    std::unique_ptr<GameScene> startGame;
     bool doodleFall = false;
 
-    int argc;
-    char** argv;
-
 public:
-    MyFramework(int argc, char** argv) : argc(argc), argv(argv) {
-
-    };
-    
-	virtual void PreInit(int& width, int& height, bool& fullscreen) {
+    MyFramework(int argc, char** argv) {
         if (argc > 1) {
             if (argv[1] == "-window") {
                 std::string sizeArg = argv[2];
                 std::stringstream ss(sizeArg);
                 char x;
-                ss >> width >> x >> height;
-                fullscreen = false;
+                ss >> screenWidth >> x >> screenHeight;
+                isFullscreen = false;
 
                 if (ss.fail() || x != 'x') {
                     std::cerr << "Invalid window size format, should be like this: WidthxHeight\n";
                 }
             }
         } else {
-            width = 320;
-            height = 200;
-            fullscreen = false;
+            screenWidth = 320;
+            screenHeight = 200;
+            isFullscreen = false;
         }
-        screenWidth = width;
-        screenHeight = height;
+        startGame = std::make_unique<GameScene>(screenWidth, screenHeight);
+    };
+    
+	virtual void PreInit(int& width, int& height, bool& fullscreen) {
+        width = screenWidth;
+        height = screenHeight;
+        fullscreen = isFullscreen;
     }
 
 	virtual bool Init() {
-        startGame.init();
-        int w, h;
-        getScreenSize(w, h);
-        std::cout << w << " " << h;
+        startGame->init();
 
 		return true;
 	}
@@ -70,12 +67,12 @@ public:
             doodleFall = true;
         }
         if (doodleFall) {
-            startGame.update(leftKeyIsPressed, rightKeyIsPressed);
+            startGame->update(leftKeyIsPressed, rightKeyIsPressed);
         }
-        startGame.render();
+        startGame->render();
 
         if (downKeyIsPressed) {
-            startGame.cleanup();
+            startGame->cleanup();
             return true;
         }
 

@@ -6,7 +6,7 @@
 
 class MainMenuScene : public Scene {
 public:
-    MainMenuScene();
+    MainMenuScene(int width, int height);
 
     void init() override;
     void update() override;

@@ -10,6 +10,8 @@
 
 class GameScene : public Scene {
 public:
+    GameScene(int width, int height);
+
     void init() override;
     void update() override;
     void update(bool leftKeyIsPressed, bool rightKeyIsPressed);

@@ -3,6 +3,8 @@
 #include "src/collisions/Collision.h"
 #include <iostream>
 
+GameScene::GameScene(int width, int height) : Scene(width, height) {}
+
 void GameScene::init() {
     doodlePlayer = new Doodle(
             SpriteLocation::doodleSpriteLocation,
@@ -14,7 +16,8 @@ void GameScene::init() {
 }
 
 void GameScene::update(bool leftKeyIsPressed, bool rightKeyIsPressed) {
-    int screenHeight = 200, screenWidth = 320; // TODO: винести потім типу як getScreenSize()
+    int screenWidth = getWidth();
+    int screenHeight = getHeight();
 
     auto currentTime = std::chrono::steady_clock::now();
     std::chrono::duration<double> delta = currentTime - prevFrameTime;
@@ -49,10 +52,8 @@ void GameScene::update() {
 
 void GameScene::spawnPlatforms() {
     for (int i = 0; i < 15; i++) {
-        int width = 320;
-        int height = 200;
-        double randX = rand() % width - 20;
-        double randY = rand() % height - 20;
+        double randX = rand() % getWidth() - 20;
+        double randY = rand() % getHeight() - 20;
 
         Platform* platform = new Platform(randX, randY);
 

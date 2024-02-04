@@ -49,7 +49,7 @@ enum class FRMouseButton {
 class Framework {
 public:
 
-	// no function calls are available here, this function should only return width, height and fullscreen values
+	// no function calls are available here, this function should only return width, height and isFullscreen values
 	virtual void PreInit(int& width, int& height, bool& fullscreen) = 0;
 
 	// return : true - ok, false - failed, application will exit
