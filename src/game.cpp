@@ -24,7 +24,11 @@ private:
 
 public:
     MyFramework(int argc, char** argv) {
-        if (argc > 1) {
+        if (argc == 0) {
+            screenWidth = 320;
+            screenHeight = 200;
+            isFullscreen = false;
+        } else if (argc > 1) {
             if (argv[1] == "-window") {
                 std::string sizeArg = argv[2];
                 std::stringstream ss(sizeArg);
@@ -34,12 +38,9 @@ public:
 
                 if (ss.fail() || x != 'x') {
                     std::cerr << "Invalid window size format, should be like this: WidthxHeight\n";
+                    exit(-1);
                 }
             }
-        } else {
-            screenWidth = 320;
-            screenHeight = 200;
-            isFullscreen = false;
         }
         startGame = std::make_unique<GameScene>(screenWidth, screenHeight);
     };
@@ -129,7 +130,7 @@ public:
 
 int main()
 {
-    char* argv[] = {"game", "-window", "600x600", nullptr};
+    char* argv[] = {"game", "-window", "800x800", nullptr};
 	return run(new MyFramework(4, argv));
 }
 
