@@ -4,10 +4,9 @@ project(2022_win64)
 set(CMAKE_CXX_STANDARD 17)
 SET(CMAKE_FIND_LIBRARY_SUFFIXES ".lib" ".dll")
 
-include_directories(${PROJECT_SOURCE_DIR})
-link_directories(${CMAKE_SOURCE_DIR})
+add_subdirectory(Framework)
 
-add_definitions(-D_WINDOWS)
+include_directories(${PROJECT_SOURCE_DIR})
 
 add_executable(doodleJump
         src/game.cpp
@@ -30,13 +29,9 @@ add_executable(doodleJump
         src/utils/Position.h
 )
 
-find_library(
-        FrameworkRelease_x64
-        PATHS
-        ${CMAKE_SOURCE_DIR}
-)
+find_library(Framework)
 
 add_link_options(-static -static-libgcc -static-libstdc++)
 
-target_link_libraries(doodleJump FrameworkRelease_x64)
+target_link_libraries(doodleJump Framework)
 

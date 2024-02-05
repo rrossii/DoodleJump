@@ -11,6 +11,7 @@
     #define FRAMEWORK_API 
 #endif
 
+
 // Bonus for any found bugs in the framework!
 
 class Sprite;
@@ -24,7 +25,7 @@ FRAMEWORK_API void destroySprite(Sprite* s);
 
 FRAMEWORK_API void drawTestBackground();
 
-FRAMEWORK_API void getScreenSize(int& w, int& h);
+FRAMEWORK_API void getScreenSize(int& w, int &h);
 
 // Get the number of milliseconds since library initialization.
 FRAMEWORK_API unsigned int getTickCount();
@@ -49,7 +50,7 @@ enum class FRMouseButton {
 class Framework {
 public:
 
-	// no function calls are available here, this function should only return width, height and isFullscreen values
+	// no function calls are available here, this function should only return width, height and fullscreen values
 	virtual void PreInit(int& width, int& height, bool& fullscreen) = 0;
 
 	// return : true - ok, false - failed, application will exit
