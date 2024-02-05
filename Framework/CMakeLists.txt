@@ -17,6 +17,12 @@ add_library(${MY_LIBNAME} SHARED ./src/launch.cpp)
 set_target_properties(${MY_LIBNAME} PROPERTIES VERSION ${PROJECT_VERSION})
 set_target_properties(${MY_LIBNAME} PROPERTIES PUBLIC_HEADER include/Framework/Framework.h)
 
+target_link_libraries(${MY_LIBNAME}
+        SDL2
+        SDL2main
+        SDL2_image
+)
+
 install (TARGETS ${MY_LIBNAME}
         RUNTIME DESTINATION bin
         LIBRARY DESTINATION lib

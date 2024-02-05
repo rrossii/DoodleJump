@@ -2,8 +2,6 @@ cmake_minimum_required(VERSION 3.27)
 project(doodleJump)
 
 set(CMAKE_CXX_STANDARD 17)
-SET(CMAKE_FIND_LIBRARY_SUFFIXES ".lib" ".dll")
-
 
 add_executable(doodleJump
         src/game.cpp
@@ -26,11 +24,7 @@ add_executable(doodleJump
         src/utils/Position.h
 )
 
-find_library(Framework
-        PATHS ${CMAKE_SOURCE_DIR}
-)
-
-add_link_options(-static -static-libgcc -static-libstdc++)
+add_subdirectory(Framework)
 
 target_link_libraries(${PROJECT_NAME} Framework)
 
