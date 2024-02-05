@@ -35,12 +35,11 @@ public:
 private:
     Doodle* doodlePlayer{};
     std::vector<Platform*> platforms;
-    Enemy* enemy = nullptr;
 
     int distancePassed;
 
     void spawnPlatforms();
-    void spawnEnemies();
+    void spawnEnemy();
     void cameraOffset();
 };
 

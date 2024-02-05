@@ -8,6 +8,13 @@
 class Platform : public Actor {
 public:
     Platform(int x, int y);
+    Enemy* getEnemy();
+    void setEnemy(Enemy* enemy);
+    void removeEnemy();
+    bool hasEnemy();
+
+private:
+    Enemy* enemy = nullptr;
 };
 
 
