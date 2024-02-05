@@ -1,11 +1,11 @@
 #include "Scene.h"
 
-Scene::Scene(int width, int height) : screenWidth(width), screenHeight(height) {}
+Scene::Scene(int width, int height) : dimensionScreen({width, height}) {}
 
 int Scene::getWidth() {
-    return screenWidth;
+    return dimensionScreen.width;
 }
 
 int Scene::getHeight() {
-    return screenHeight;
+    return dimensionScreen.height;
 }

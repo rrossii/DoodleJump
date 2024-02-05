@@ -4,6 +4,7 @@
 #include "Framework.h"
 #include "src/utils/SpriteLocation.h"
 #include "src/utils/Position.h"
+#include "src/utils/Dimension.h"
 #include <filesystem>
 
 class Actor {
@@ -22,7 +23,7 @@ public:
 protected:
     Sprite* sprite;
     Position position;
-    int width, height;
+    Dimension dimension;
 };
 
 #endif //INC_2022_WIN64_ACTOR_H

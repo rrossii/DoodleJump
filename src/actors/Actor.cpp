@@ -22,15 +22,15 @@ void Actor::render() {
 }
 
 int Actor::getHeight() {
-    getSpriteSize(sprite, width, height);
+    getSpriteSize(sprite, dimension.width, dimension.height);
 
-    return height;
+    return dimension.height;
 }
 
 int Actor::getWidth() {
-    getSpriteSize(sprite, width, height);
+    getSpriteSize(sprite, dimension.width, dimension.height);
 
-    return width;
+    return dimension.width;
 }
 
 Sprite *Actor::getSprite() {

@@ -5,10 +5,11 @@
 #include "src/scenes/GameScene.h"
 #include "src/scenes/GameOverScene.h"
 
+#include "src/utils/Dimension.h"
+
 class MyFramework : public Framework {
 private:
-    int screenWidth;
-    int screenHeight;
+    Dimension dimensionScreen;
     bool isFullscreen;
 
     bool upKeyIsPressed = false;
@@ -29,15 +30,15 @@ private:
 public:
     MyFramework(int argc, char** argv) {
         if (argc == 0) {
-            screenWidth = 320;
-            screenHeight = 200;
+            dimensionScreen.width = 320;
+            dimensionScreen.height = 200;
             isFullscreen = false;
         } else if (argc > 1) {
             if (argv[1] == "-window") {
                 std::string sizeArg = argv[2];
                 std::stringstream ss(sizeArg);
                 char x;
-                ss >> screenWidth >> x >> screenHeight;
+                ss >> dimensionScreen.width >> x >> dimensionScreen.height;
                 isFullscreen = false;
 
                 if (ss.fail() || x != 'x') {
@@ -46,13 +47,13 @@ public:
                 }
             }
         }
-        startGame = std::make_unique<GameScene>(screenWidth, screenHeight);
-        gameOver = std::make_unique<GameOverScene>(screenWidth, screenHeight);
+        startGame = std::make_unique<GameScene>(dimensionScreen.width, dimensionScreen.height);
+        gameOver = std::make_unique<GameOverScene>(dimensionScreen.width, dimensionScreen.height);
     };
     
 	virtual void PreInit(int& width, int& height, bool& fullscreen) {
-        width = screenWidth;
-        height = screenHeight;
+        width = dimensionScreen.width;
+        height = dimensionScreen.height;
         fullscreen = isFullscreen;
     }
 

@@ -1,6 +1,8 @@
 #ifndef INC_2022_WIN64_SCENE_H
 #define INC_2022_WIN64_SCENE_H
 
+#include "src/utils/Dimension.h"
+
 class Scene {
 public:
     Scene(int width, int height);
@@ -17,7 +19,7 @@ protected:
     int getHeight();
 
 private:
-    int screenWidth, screenHeight;
+    Dimension dimensionScreen;
 };
 
 #endif //INC_2022_WIN64_SCENE_H
