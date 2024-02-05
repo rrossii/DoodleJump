@@ -1,7 +1,7 @@
 #include "src/utils/SpriteLocation.h"
 
 const std::filesystem::path SpriteLocation::getFolder() {
-    return R"(C:\Users\annro\Desktop\doodle jump task\2022_win64\data\)";
+    return std::filesystem::canonical(std::filesystem::canonical("/proc/self/exe").remove_filename() / "../data");
 }
 
 const std::filesystem::path SpriteLocation::getDoodleSpriteLocation() {
