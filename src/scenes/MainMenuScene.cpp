@@ -1,5 +1,4 @@
 #include "src/scenes/MainMenuScene.h"
-#include <iostream>
 
 
 MainMenuScene::MainMenuScene(int width, int height) : Scene(width, height) {}

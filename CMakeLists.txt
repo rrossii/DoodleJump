@@ -17,7 +17,6 @@ add_executable(doodleJump
         src/actors/Projectile.cpp
         src/scenes/Scene.cpp
         src/utils/Randomizer.cpp
-        src/ui/UIManager.cpp
         src/scenes/GameOverScene.cpp
 
         src/utils/Dimension.h

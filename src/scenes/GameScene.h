@@ -14,7 +14,6 @@
 #include "src/collisions/Collision.h"
 
 #include "src/ui/UIElement.h"
-#include "src/ui/UIManager.h"
 
 #include <chrono>
 #include <vector>
@@ -35,12 +34,11 @@ public:
 private:
     Doodle* doodlePlayer{};
     std::vector<Platform*> platforms;
-    Enemy* enemy = nullptr;
 
     int distancePassed;
 
     void spawnPlatforms();
-    void spawnEnemies();
+    void spawnEnemy();
     void cameraOffset();
 };
 

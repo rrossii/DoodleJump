@@ -1,8 +1,9 @@
 #include "src/scenes/GameScene.h"
 #include <iostream>
 
-const int passedPlatformsFrequencyToSpawnEnemy = 10;
+const int passedPlatformsFrequencyToSpawnEnemy = 50;
 int numberOfPassedPlatforms = 0;
+bool enemySpawned = false;
 
 GameScene::GameScene(int width, int height) : Scene(width, height) {}
 
@@ -41,8 +42,9 @@ void GameScene::update(bool firstJump, int deltaTime, bool leftKeyIsPressed, boo
         }
     }
 
-    if (numberOfPassedPlatforms > 0 && numberOfPassedPlatforms % passedPlatformsFrequencyToSpawnEnemy == 0) {
-        spawnEnemies();
+    if (!enemySpawned && numberOfPassedPlatforms > 0 && numberOfPassedPlatforms % passedPlatformsFrequencyToSpawnEnemy == 0) {
+        spawnEnemy();
+        enemySpawned = true;
     }
 }
 
@@ -51,9 +53,9 @@ void GameScene::render() {
 
     for (auto p: platforms) {
         p->render();
-    }
-    if (enemy != nullptr) {
-        enemy->render();
+        if (p->hasEnemy()) {
+            p->getEnemy()->render();
+        }
     }
 }
 
@@ -62,25 +64,25 @@ void GameScene::cameraOffset() {
     if (doodlePlayer->getY() < offset) {
         for (Platform *platform: platforms) {
             platform->setPosition(platform->getX(), platform->getY() + 1); // TODO: think about this parameter
-//            if (platform->hasEnemyOnPlatform()) {
-//                platform->getEnemy()->setPosition(platform->getX(), platform->getY() + 1);
-//                platform->deleteEnemyFromPlatform();
-//            }
-
-            if (platform->getY() > getSceneHeight()) {
-                numberOfPassedPlatforms++;
-            }
 
             // create "new" platforms
             if (platform->getY() > getSceneHeight()) {
+                numberOfPassedPlatforms++;
+                platform->removeEnemy();
+                enemySpawned = false;
+
                 int randX = Randomizer::getRandomNumber(0, getSceneWidth() - platform->getWidth());
                 platform->setPosition(randX, 0);
             }
-        }
-        if (enemy != nullptr) {
-            enemy->setPosition(enemy->getX(), enemy->getY() + 1);
-            if (enemy->getY() > getSceneHeight()) {
-                enemy = nullptr;
+
+            if (platform->hasEnemy()) {
+                auto* enemy = platform->getEnemy();
+                enemy->setPosition(enemy->getX(), enemy->getY() + 1);
+
+                if (enemy->getY() > getSceneHeight()) {
+                    platform->removeEnemy();
+                    enemySpawned = false;
+                }
             }
         }
     }
@@ -122,17 +124,17 @@ void GameScene::spawnPlatforms() {
     }
 }
 
-void GameScene::spawnEnemies() {
-    int overallNumberOfPlatforms = platforms.size();
-    int indexOfEnemyPlatform = Randomizer::getRandomNumber(0, overallNumberOfPlatforms - 1);
-    auto *enemyPlatform = platforms[indexOfEnemyPlatform];
-
-    enemy = new Enemy(SpriteLocation::getButterflyEnemySpriteLocation(),
-                            enemyPlatform->getX() + enemyPlatform->getWidth() / 2,
-                            enemyPlatform->getY() + 10,
-                            false);
-
-//    enemyPlatform->addEnemyOnPlatform(enemy);
+void GameScene::spawnEnemy() {
+    for (auto& platform : platforms) {
+        if (platform->getY() <= 0 && !platform->hasEnemy()) {
+            auto* newEnemy = new Enemy(SpriteLocation::getButterflyEnemySpriteLocation(),
+                                       platform->getX() - platform->getWidth() / 2,
+                                       platform->getY() - platform->getHeight()*2,
+                                       false);
+            platform->setEnemy(newEnemy);
+            break;
+        }
+    }
 }
 
 void GameScene::cleanup() {

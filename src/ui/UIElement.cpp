@@ -1,13 +1,8 @@
 #include "src/ui/UIElement.h"
-#include "Framework/Framework.h"
 
 
 UIElement::UIElement(const std::filesystem::path& spriteLocation, Position position)
-         : uiSpriteLocation(spriteLocation), position(position) {
-}
-
-std::filesystem::path UIElement::getSpriteLocation() {
-    return uiSpriteLocation;
+         : uiSprite(createSprite(spriteLocation.string().c_str())), position(position) {
 }
 
 int UIElement::getX() {
@@ -16,5 +11,25 @@ int UIElement::getX() {
 
 int UIElement::getY() {
     return position.y;
+}
+
+int UIElement::getHeight() {
+    getSpriteSize(uiSprite, dimension.width, dimension.height);
+
+    return dimension.height;
+}
+
+int UIElement::getWidth() {
+    getSpriteSize(uiSprite, dimension.width, dimension.height);
+
+    return dimension.width;
+}
+
+Sprite *UIElement::getSprite() {
+    return uiSprite;
+}
+
+void UIElement::render() {
+    drawSprite(uiSprite, position.x, position.y);
 }
 
