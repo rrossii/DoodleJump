@@ -8,3 +8,17 @@ bool Collision::isColliding(Doodle *doodle, Platform *platform) {
         doodle->getX() >= platform->getX() - doodle->getWidth();
 
 }
+
+bool Collision::doodleDieFromEnemy(Doodle *doodle, Enemy *enemy) {
+    return
+        abs(doodle->getX() - enemy->getX()) < enemy->getWidth() &&
+        abs(doodle->getY() - enemy->getY()) < enemy->getHeight() &&
+        doodle->getY() >= enemy->getY();
+}
+
+bool Collision::doodleKillEnemy(Doodle *doodle, Enemy *enemy) {
+    return
+        abs(doodle->getX() - enemy->getX()) < enemy->getWidth() &&
+        abs(doodle->getY() - enemy->getY()) < enemy->getHeight() &&
+        doodle->getY() <= enemy->getY();
+}

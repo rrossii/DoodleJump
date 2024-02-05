@@ -1,8 +1,8 @@
 #include "src/actors/Actor.h"
 
 
-Actor::Actor(const std::filesystem::path& spriteLocation, int posX, int posY)
-    : sprite(createSprite(spriteLocation.string().c_str())), position({posX, posY}) {}
+Actor::Actor(const std::filesystem::path &spriteLocation, int posX, int posY)
+        : sprite(createSprite(spriteLocation.string().c_str())), position({posX, posY}) {}
 
 void Actor::setPosition(int x, int y) {
     position.x = x;

@@ -10,9 +10,11 @@ Doodle::Doodle(const std::filesystem::path &spriteLocation, int posX, int posY, 
 
 
 void Doodle::jump(int screenHeight, int screenWidth,
-                  double deltaTime, bool isLeftKeyPressed, bool isRightKeyPressed) {
+                  bool isLeftKeyPressed, bool isRightKeyPressed) {
+    sceneWidth = screenWidth;
+    sceneHeight = screenHeight;
 
-    displacementByX(screenWidth, isLeftKeyPressed, isRightKeyPressed);
+    displacementByX(isLeftKeyPressed, isRightKeyPressed);
 
     velocityY -= 5;
     if (velocityY < -5) {
@@ -23,7 +25,7 @@ void Doodle::jump(int screenHeight, int screenWidth,
     }
 }
 
-void Doodle::displacementByX(int screenWidth, bool isLeftKeyPressed, bool isRightKeyPressed) {
+void Doodle::displacementByX(bool isLeftKeyPressed, bool isRightKeyPressed) {
     if (isLeftKeyPressed) {
         position.x -= 3;
     }
@@ -31,18 +33,18 @@ void Doodle::displacementByX(int screenWidth, bool isLeftKeyPressed, bool isRigh
         position.x += 3;
     }
 
-    if (position.x >= screenWidth) {
+    if (position.x >= sceneWidth) {
         position.x = 0;
     } else if (position.x < 0) {
-        position.x = screenWidth;
+        position.x = sceneWidth;
     }
 }
 
-void Doodle::fall(double deltaTime, int screenWidth, bool isLeftKeyPressed, bool isRightKeyPressed) {
+void Doodle::fall(bool isLeftKeyPressed, bool isRightKeyPressed) {
     position.y += velocityY;
     velocityY += GRAVITY;
 
-    displacementByX(screenWidth, isLeftKeyPressed, isRightKeyPressed);
+    displacementByX(isLeftKeyPressed, isRightKeyPressed);
 }
 
 void Doodle::shoot() {
@@ -59,5 +61,12 @@ void Doodle::updateProjectilePosition() {
     if (projectile) {
         projectile->setY(projectile->getY() + projectile->getSpeed());
         projectile->render();
+    }
+}
+
+void Doodle::die() {
+    while (position.y < sceneHeight) {
+        position.y += 1;
+        render();
     }
 }

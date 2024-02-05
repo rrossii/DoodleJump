@@ -1,8 +1,7 @@
 #include "src/scenes/GameScene.h"
 #include <iostream>
 
-const int passedPlatformsFrequencyToSpawnEnemy = 50;
-int numberOfPassedPlatforms = 0;
+const int passedPlatformsFrequencyToSpawnEnemy = 10;
 bool enemySpawned = false;
 
 GameScene::GameScene(int width, int height) : Scene(width, height) {}
@@ -15,25 +14,34 @@ void GameScene::init() {
     spawnPlatforms();
 }
 
-void GameScene::update(bool firstJump, int deltaTime, bool leftKeyIsPressed, bool rightKeyIsPressed) {
+void GameScene::update(bool firstJump, int deltaTime, bool leftKeyIsPressed, bool rightKeyIsPressed, bool leftMouseButtonIsPressed) {
     int screenWidth = getSceneWidth();
     int screenHeight = getSceneHeight();
 
     if (firstJump) {
-        doodlePlayer->jump(screenHeight, screenWidth, deltaTime, leftKeyIsPressed, rightKeyIsPressed);
+        doodlePlayer->jump(screenHeight, screenWidth, leftKeyIsPressed, rightKeyIsPressed);
     }
 
-    doodlePlayer->fall(deltaTime, screenWidth, leftKeyIsPressed, rightKeyIsPressed);
+    doodlePlayer->fall(leftKeyIsPressed, rightKeyIsPressed);
 
     for (auto platform: platforms) {
         if (Collision::isColliding(doodlePlayer, platform)) {
-            doodlePlayer->jump(screenHeight, screenWidth, deltaTime,
+            doodlePlayer->jump(screenHeight, screenWidth,
                                leftKeyIsPressed, rightKeyIsPressed);
+        }
+        if (platform->hasEnemy()) {
+            Enemy* enemy = platform->getEnemy();
+            if (Collision::doodleDieFromEnemy(doodlePlayer, enemy)) {
+                doodlePlayer->die();
+            }
+            if (Collision::doodleKillEnemy(doodlePlayer, enemy)) {
+                enemy->die(screenHeight);
+            }
         }
     }
     cameraOffset();
 
-    if (leftKeyIsPressed) {
+    if (leftMouseButtonIsPressed) {
         doodlePlayer->shoot();
     }
     if (doodlePlayer->hasUsedProjectile()) {
@@ -63,7 +71,7 @@ void GameScene::cameraOffset() {
     int offset = getSceneHeight() / 2;
     if (doodlePlayer->getY() < offset) {
         for (Platform *platform: platforms) {
-            platform->setPosition(platform->getX(), platform->getY() + 1); // TODO: think about this parameter
+            platform->setPosition(platform->getX(), platform->getY() + 1);
 
             // create "new" platforms
             if (platform->getY() > getSceneHeight()) {
@@ -129,8 +137,7 @@ void GameScene::spawnEnemy() {
         if (platform->getY() <= 0 && !platform->hasEnemy()) {
             auto* newEnemy = new Enemy(SpriteLocation::getButterflyEnemySpriteLocation(),
                                        platform->getX() - platform->getWidth() / 2,
-                                       platform->getY() - platform->getHeight()*2,
-                                       false);
+                                       platform->getY() - platform->getHeight()*2);
             platform->setEnemy(newEnemy);
             break;
         }
@@ -151,4 +158,8 @@ void GameScene::destroySprites() {
     for (auto platform: platforms) {
         destroySprite(platform->getSprite());
     }
+}
+
+int GameScene::getNumberOfPassedPlatforms() {
+    return numberOfPassedPlatforms;
 }
