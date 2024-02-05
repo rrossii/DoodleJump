@@ -6,8 +6,13 @@
 class Projectile : public Actor {
 public:
     Projectile(const std::filesystem::path& spriteLocation, int posX, int posY);
+
+    int getSpeed();
+
+    void setY(int y);
+    void update();
 private:
-    const int SPEED = 10; //TODO: maybe redo this variable later
+    const int SPEED = -4; //TODO: maybe redo this variable later
 };
 
 

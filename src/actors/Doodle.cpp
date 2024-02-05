@@ -14,9 +14,9 @@ void Doodle::jump(int screenHeight, int screenWidth,
 
     displacementByX(screenWidth, isLeftKeyPressed, isRightKeyPressed);
 
-    velocityY -= 4;
-    if (velocityY < -4) {
-        velocityY = -4;
+    velocityY -= 5;
+    if (velocityY < -5) {
+        velocityY = -5;
     }
     if (position.y < 0) {
         velocityY = 0;
@@ -25,10 +25,10 @@ void Doodle::jump(int screenHeight, int screenWidth,
 
 void Doodle::displacementByX(int screenWidth, bool isLeftKeyPressed, bool isRightKeyPressed) {
     if (isLeftKeyPressed) {
-        position.x -= 2;
+        position.x -= 3;
     }
     if (isRightKeyPressed) {
-        position.x += 2;
+        position.x += 3;
     }
 
     if (position.x >= screenWidth) {
@@ -46,5 +46,18 @@ void Doodle::fall(double deltaTime, int screenWidth, bool isLeftKeyPressed, bool
 }
 
 void Doodle::shoot() {
-    
+    projectile = new Projectile(SpriteLocation::projectileSpriteLocation,
+                                this->position.x + this->getWidth() / 2, this->position.y - this->getHeight() / 2);
+    projectile->render();
+}
+
+bool Doodle::hasUsedProjectile() {
+    return projectile != nullptr;
+}
+
+void Doodle::updateProjectilePosition() {
+    if (projectile) {
+        projectile->setY(projectile->getY() + projectile->getSpeed());
+        projectile->render();
+    }
 }

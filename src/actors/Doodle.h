@@ -16,12 +16,13 @@ public:
     void displacementByX(int screenWidth, bool isLeftKeyPressed, bool isRightKeyPressed);
 
     void shoot();
+    bool hasUsedProjectile();
+    void updateProjectilePosition();
 
 private:
     double velocityY;
     bool isJumping;
-    Projectile* projectile = new Projectile(SpriteLocation::projectileSpriteLocation,
-                                            this->position.x, this->position.y);
+    Projectile* projectile;
 };
 
 

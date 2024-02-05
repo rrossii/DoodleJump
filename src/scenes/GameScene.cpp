@@ -24,11 +24,17 @@ void GameScene::update(bool firstJump, int deltaTime, bool leftKeyIsPressed, boo
         if (Collision::isColliding(doodlePlayer, platform)) {
             doodlePlayer->jump(screenHeight, screenWidth, deltaTime,
                                leftKeyIsPressed, rightKeyIsPressed);
-
-
         }
     }
     cameraOffset();
+
+    if (leftKeyIsPressed) {
+        doodlePlayer->shoot();
+    } if (doodlePlayer->hasUsedProjectile()) {
+        if (!isDoodleDead()) {
+            doodlePlayer->updateProjectilePosition();
+        }
+    }
 }
 
 void GameScene::render() {
