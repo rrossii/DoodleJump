@@ -32,9 +32,9 @@ private:
 
 public:
     MyFramework(int argc, char** argv) {
-        if (argc == 0) {
-            dimensionScreen.width = 320;
-            dimensionScreen.height = 200;
+        if (argc == 1) {
+            dimensionScreen.width = 900;
+            dimensionScreen.height = 900;
             isFullscreen = false;
         } else if (argc > 1) {
             if (argv[1] == "-window") {
@@ -67,6 +67,8 @@ public:
 	}
 
     virtual void Close() {
+        std::cout << "Score: " << startGame->getNumberOfPassedPlatforms() << " passed platforms\n";
+
         startGame->destroySprites();
         startGame->cleanup();
         gameOver->destroySprites();
@@ -82,7 +84,7 @@ public:
         int deltaTime = delta.count();
 
         if (upKeyIsPressed && !doodleFall) {
-            startGame->update(true, deltaTime, leftKeyIsPressed, rightKeyIsPressed);
+            startGame->update(true, deltaTime, leftKeyIsPressed, rightKeyIsPressed, isLeftMouseButtonPressed);
             doodleFall = true;
         }
 
@@ -91,7 +93,7 @@ public:
         }
 
         if (doodleFall) {
-            startGame->update(false, deltaTime, leftKeyIsPressed, rightKeyIsPressed);
+            startGame->update(false, deltaTime, leftKeyIsPressed, rightKeyIsPressed, isLeftMouseButtonPressed);
             if (startGame->isDoodleDead()) {
                 gameOver->init();
                 gameOver->render();
@@ -112,7 +114,26 @@ public:
 	}
 
 	virtual void onMouseButtonClick(FRMouseButton button, bool isReleased) {
-
+        switch (button) {
+            case FRMouseButton::LEFT:
+                isLeftMouseButtonPressed = true;
+                if (isReleased) {
+                    isLeftMouseButtonPressed = false;
+                }
+                break;
+            case FRMouseButton::RIGHT:
+                isRightMouseButtonPressed = true;
+                if (isReleased) {
+                    isLeftMouseButtonPressed = false;
+                }
+                break;
+            case FRMouseButton::MIDDLE:
+                isMiddleMouseButtonPressed = true;
+                if (isReleased) {
+                    isLeftMouseButtonPressed = false;
+                }
+                break;
+        }
 	}
 
 	virtual void onKeyPressed(FRKey k) {
@@ -155,13 +176,7 @@ public:
 	}
 };
 
-int main()
+int main(int argc, char* argv[])
 {
-    char* argv[] = {"game", "-window", "800x800", nullptr};
-	return run(new MyFramework(4, argv));
+    return run(new MyFramework(argc, argv));
 }
-
-//int main(int argc, char* argv[])
-//{
-//    return run(new MyFramework(argc, argv));
-//}

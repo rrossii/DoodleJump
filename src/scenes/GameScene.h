@@ -24,18 +24,20 @@ public:
 
     void init() override;
     void update() override;
-    void update(bool firstJump, int deltaTime, bool leftKeyIsPressed, bool rightKeyIsPressed);
+    void update(bool firstJump, int deltaTime, bool leftKeyIsPressed, bool rightKeyIsPressed, bool leftMouseButtonIsPressed);
     void render() override;
     void handleInput() override;
     void cleanup() override;
     void destroySprites() override;
 
     bool isDoodleDead();
+
+    int getNumberOfPassedPlatforms();
 private:
     Doodle* doodlePlayer{};
     std::vector<Platform*> platforms;
 
-    int distancePassed;
+    int numberOfPassedPlatforms = 0;
 
     void spawnPlatforms();
     void spawnEnemy();

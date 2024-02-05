@@ -8,8 +8,9 @@
 class Collision {
 public:
     static bool isColliding(Doodle* doodle, Platform* platform);
-//    bool isColliding(Doodle* doodle, Enemy* enemy);
-//    bool isColliding(Enemy* enemy, Projectile* projectile);
+    static bool doodleDieFromEnemy(Doodle* doodle, Enemy* enemy);
+    static bool doodleKillEnemy(Doodle* doodle, Enemy* enemy);
+//    static bool isColliding(Enemy* enemy, Projectile* projectile);
 };
 
 

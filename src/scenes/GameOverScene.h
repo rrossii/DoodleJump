@@ -20,7 +20,6 @@ public:
 
 private:
     UIElement* playAgainButton;
-    UIElement* scores;
 };
 
 
