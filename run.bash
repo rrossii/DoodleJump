@@ -1,4 +1,4 @@
 #!/bin/bash
-cd cmake-build-debug
+cd build
 sudo chmod +x doodleJump
 ./doodleJump
