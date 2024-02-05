@@ -27,6 +27,9 @@ private:
     std::unique_ptr<GameOverScene> gameOver;
     bool doodleFall = false;
 
+    std::chrono::steady_clock::time_point prevFrameTime = std::chrono::steady_clock::time_point::min();
+    std::chrono::steady_clock::time_point currentTime = std::chrono::steady_clock::now();
+
 public:
     MyFramework(int argc, char** argv) {
         if (argc == 0) {
@@ -73,21 +76,28 @@ public:
 	virtual bool Tick() {
         drawTestBackground();
 
-        if (upKeyIsPressed) {
+        prevFrameTime = currentTime;
+        currentTime = std::chrono::steady_clock::now();
+        std::chrono::duration<double> delta = currentTime - prevFrameTime;
+        int deltaTime = delta.count();
+
+        if (upKeyIsPressed && !doodleFall) {
+            startGame->update(true, deltaTime, leftKeyIsPressed, rightKeyIsPressed);
             doodleFall = true;
         }
+
+        if (!gameOverSceneRendered) {
+            startGame->render();
+        }
+
         if (doodleFall) {
-            startGame->update(leftKeyIsPressed, rightKeyIsPressed);
+            startGame->update(false, deltaTime, leftKeyIsPressed, rightKeyIsPressed);
             if (startGame->isDoodleDead()) {
                 gameOver->init();
                 gameOver->render();
 
                 gameOverSceneRendered = true;
             }
-        }
-
-        if (!gameOverSceneRendered) {
-            startGame->render();
         }
 
         if (downKeyIsPressed) {

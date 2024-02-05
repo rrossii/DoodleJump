@@ -5,28 +5,27 @@ GameScene::GameScene(int width, int height) : Scene(width, height) {}
 void GameScene::init() {
     doodlePlayer = new Doodle(
             SpriteLocation::doodleSpriteLocation,
-            getWidth() / 2, getHeight() - 200, 200);
+            getWidth() / 2, getHeight() - 200, 0);
 
     spawnPlatforms();
-
-    prevFrameTime = std::chrono::steady_clock::now();
 }
 
-void GameScene::update(bool leftKeyIsPressed, bool rightKeyIsPressed) {
+void GameScene::update(bool firstJump, int deltaTime, bool leftKeyIsPressed, bool rightKeyIsPressed) {
     int screenWidth = getWidth();
     int screenHeight = getHeight();
 
-    auto currentTime = std::chrono::steady_clock::now();
-    std::chrono::duration<double> delta = currentTime - prevFrameTime;
-    double deltaTime = delta.count();
-    prevFrameTime = currentTime;
+    if (firstJump) {
+        doodlePlayer->jump(screenHeight, screenWidth, deltaTime, leftKeyIsPressed, rightKeyIsPressed);
+    }
 
-    doodlePlayer->fall(screenWidth, leftKeyIsPressed, rightKeyIsPressed);
+    doodlePlayer->fall(deltaTime, screenWidth, leftKeyIsPressed, rightKeyIsPressed);
 
     for (auto platform : platforms) {
         if (Collision::isColliding(doodlePlayer, platform)) {
             doodlePlayer->jump(screenHeight, screenWidth, deltaTime,
                                leftKeyIsPressed, rightKeyIsPressed);
+
+
         }
     }
     cameraOffset();
@@ -44,7 +43,7 @@ void GameScene::cameraOffset() {
     int offset = getHeight() / 2;
     if (doodlePlayer->getY() < offset) {
         for (Platform* platform : platforms) {
-            platform->setPosition(platform->getX(), platform->getY() + 3); // TODO: think about this parameter
+            platform->setPosition(platform->getX(), platform->getY() + 1); // TODO: think about this parameter
 
             if (platform->getY() > getHeight()) {
                 int randX = Randomizer::getRandomNumber(0, getWidth() - platform->getWidth());
@@ -71,7 +70,7 @@ void GameScene::spawnPlatforms() {
     int platformHeight = basicPlatform->getHeight();
     int platformWidth = basicPlatform->getWidth();
     int spacingVertical = platformHeight + 30;
-    int spacingHorizontal = (platformWidth * 2) + 30;
+    int spacingHorizontal = (platformWidth * 2) + 100;
     int numOfHorizontalLines = getHeight() / spacingVertical;
     int maxNumberOfPlatformsInOneLine = getWidth() / spacingHorizontal;
     int currentY = 0;

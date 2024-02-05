@@ -25,7 +25,7 @@ public:
 
     void init() override;
     void update() override;
-    void update(bool leftKeyIsPressed, bool rightKeyIsPressed);
+    void update(bool firstJump, int deltaTime, bool leftKeyIsPressed, bool rightKeyIsPressed);
     void render() override;
     void handleInput() override;
     void cleanup() override;
@@ -41,7 +41,6 @@ private:
     Doodle* doodlePlayer{};
     std::vector<Platform*> platforms;
     std::vector<Enemy*> enemies;
-    std::chrono::steady_clock::time_point prevFrameTime;
 };
 
 
