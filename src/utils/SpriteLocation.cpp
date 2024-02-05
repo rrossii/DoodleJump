@@ -9,7 +9,7 @@ const std::filesystem::path SpriteLocation::getDoodleSpriteLocation() {
 }
 
 const std::filesystem::path SpriteLocation::getDoodleShootingSpriteLocation() {
-    return getFolder() / R"(blue-lik-puca.png)";
+    return getFolder() / R"(blue-lik-puca@2x.png)";
 }
 
 const std::filesystem::path SpriteLocation::getProjectileSpriteLocation() {
@@ -25,11 +25,11 @@ const std::filesystem::path SpriteLocation::getPlatformSpriteLocation() {
 }
 
 const std::filesystem::path SpriteLocation::getPlayAgainButtonSpriteLocation() {
-    return getFolder() / R"(play-again-on.png)";
+    return getFolder() / R"(play-again-on@2x.png)";
 }
 
 const std::filesystem::path SpriteLocation::getScoresButtonSpriteLocation() {
-    return getFolder() / R"(scores.png)";
+    return getFolder() / R"(scores-on@2x.png)";
 }
 
 const std::filesystem::path SpriteLocation::getTallEnemySpriteLocation() {

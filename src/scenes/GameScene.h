@@ -14,7 +14,6 @@
 #include "src/collisions/Collision.h"
 
 #include "src/ui/UIElement.h"
-#include "src/ui/UIManager.h"
 
 #include <chrono>
 #include <vector>

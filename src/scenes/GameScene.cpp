@@ -42,8 +42,6 @@ void GameScene::update(bool firstJump, int deltaTime, bool leftKeyIsPressed, boo
         }
     }
 
-    std::cout << numberOfPassedPlatforms << '\n';
-
     if (!enemySpawned && numberOfPassedPlatforms > 0 && numberOfPassedPlatforms % passedPlatformsFrequencyToSpawnEnemy == 0) {
         spawnEnemy();
         enemySpawned = true;

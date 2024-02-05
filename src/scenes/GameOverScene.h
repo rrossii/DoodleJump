@@ -3,7 +3,6 @@
 
 #include "Scene.h"
 #include "src/ui/UIElement.h"
-#include "src/ui/UIManager.h"
 
 #include "src/utils/Position.h"
 #include "src/utils/SpriteLocation.h"
