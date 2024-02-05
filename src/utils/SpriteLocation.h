@@ -6,7 +6,7 @@
 
 class SpriteLocation {
 public:
-    static const std::string getFolder();
+    static const std::filesystem::path getFolder();
 
     static const std::filesystem::path getDoodleSpriteLocation();
     static const std::filesystem::path getDoodleShootingSpriteLocation();
