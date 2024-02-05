@@ -8,14 +8,6 @@
 class Platform : public Actor {
 public:
     Platform(int x, int y);
-    void addEnemyOnPlatform(Enemy* enemy);
-    void deleteEnemyFromPlatform();
-    bool hasEnemyOnPlatform();
-
-    Enemy* getEnemy();
-private:
-    bool hasEnemy = false;
-    Enemy* enemy = nullptr;
 };
 
 
