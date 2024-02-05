@@ -22,7 +22,7 @@ public:
 private:
     double velocityY;
     bool isJumping;
-    Projectile* projectile;
+    Projectile* projectile = nullptr;
 };
 
 
