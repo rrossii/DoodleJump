@@ -2,10 +2,10 @@
 
 Scene::Scene(int width, int height) : dimensionScreen({width, height}) {}
 
-int Scene::getWidth() {
+int Scene::getSceneWidth() {
     return dimensionScreen.width;
 }
 
-int Scene::getHeight() {
+int Scene::getSceneHeight() {
     return dimensionScreen.height;
 }

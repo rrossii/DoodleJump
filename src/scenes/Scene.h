@@ -15,8 +15,8 @@ public:
     virtual void destroySprites() = 0;
 
 protected:
-    int getWidth();
-    int getHeight();
+    int getSceneWidth();
+    int getSceneHeight();
 
 private:
     Dimension dimensionScreen;

@@ -46,7 +46,7 @@ void Doodle::fall(double deltaTime, int screenWidth, bool isLeftKeyPressed, bool
 }
 
 void Doodle::shoot() {
-    projectile = new Projectile(SpriteLocation::projectileSpriteLocation,
+    projectile = new Projectile(SpriteLocation::getProjectileSpriteLocation(),
                                 this->position.x + this->getWidth() / 2, this->position.y - this->getHeight() / 2);
     projectile->render();
 }

@@ -31,16 +31,17 @@ public:
     void cleanup() override;
     void destroySprites() override;
 
-    void spawnPlatforms();
-    void spawnEnemies();
-
-    void cameraOffset();
-
     bool isDoodleDead();
 private:
     Doodle* doodlePlayer{};
     std::vector<Platform*> platforms;
-    std::vector<Enemy*> enemies;
+    Enemy* enemy = nullptr;
+
+    int distancePassed;
+
+    void spawnPlatforms();
+    void spawnEnemies();
+    void cameraOffset();
 };
 
 
